@@ -1,6 +1,8 @@
 import React from "react";
 import { ScrollView, View, StyleSheet, Text } from "react-native";
 import { Image } from "expo-image";
+import * as Clipboard from "expo-clipboard";
+import { Pressable, Alert } from "react-native";
 
 export default function Nós() {
   return (
@@ -46,6 +48,38 @@ export default function Nós() {
         <Text style={styles.text}>Mirian Martins do Amaral - 00118027</Text>
         <Text style={styles.text}>Thamiris Fogaça Utsunomiya - 00117922</Text>
         <Text style={styles.text}>Júlia Rodrigues dos Reis - 00114341</Text>
+
+        {/* Citação do desenvolvedor adicionada após os nomes */}
+        <Text style={styles.quote}>
+          Desenvolvedor:{" "}
+          <Text style={styles.developerName}>Lucas Gardelli Martins</Text>
+        </Text>
+
+        <Pressable
+          onPress={() => {
+            Clipboard.setStringAsync("lucasgardellimartins07@gmail.com");
+            Alert.alert(
+              "Copiado!",
+              "E-mail copiado para a área de transferência."
+            );
+          }}
+        >
+          <Text style={styles.copyText}>
+            E-mail: lucasgardellimartins07@gmail.com
+          </Text>
+        </Pressable>
+
+        <Pressable
+          onPress={() => {
+            Clipboard.setStringAsync("(15) 99138-6482");
+            Alert.alert(
+              "Copiado!",
+              "Telefone copiado para a área de transferência."
+            );
+          }}
+        >
+          <Text style={styles.copyText}>Telefone: (15) 99138-6482</Text>
+        </Pressable>
       </View>
     </ScrollView>
   );
@@ -88,5 +122,23 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     marginBottom: 12,
+  },
+  quote: {
+    fontSize: 17,
+    fontStyle: "italic",
+    color: "#666",
+    textAlign: "right",
+    marginTop: 12,
+  },
+  developerName: {
+    fontWeight: "700",
+    color: "#1843a9",
+  },
+  copyText: {
+    fontSize: 16,
+    color: "#666",
+    textAlign: "right",
+    marginTop: 4,
+    textDecorationLine: "underline",
   },
 });
